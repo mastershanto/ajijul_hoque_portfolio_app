@@ -1,4 +1,7 @@
+import 'dart:ui';
 import 'package:flutter/material.dart';
+import 'package:ajijul_hoque_app/widgets/responsive_layout.dart';
+import 'package:ajijul_hoque_app/sections/portfolio_sections.dart';
 
 void main() {
   runApp(const MyApp());
@@ -7,116 +10,420 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Ajijul Hoque | AI Engineer & Full-Stack Developer',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-        // This is the theme of your application.
-        //
-        // TRY THIS: Try running your application with "flutter run". You'll see
-        // the application has a purple toolbar. Then, without quitting the app,
-        // try changing the seedColor in the colorScheme below to Colors.green
-        // and then invoke "hot reload" (save your changes or press the "hot
-        // reload" button in a Flutter-supported IDE, or press "r" if you used
-        // the command line to start the app).
-        //
-        // Notice that the counter didn't reset back to zero; the application
-        // state is not lost during the reload. To reset the state, use hot
-        // restart instead.
-        //
-        // This works for code too, not just values: Most code changes can be
-        // tested with just a hot reload.
-        colorScheme: .fromSeed(seedColor: Colors.deepPurple),
+        brightness: Brightness.dark,
+        primaryColor: const Color(0xFF38BDF8),
+        scaffoldBackgroundColor: const Color(0xFF0F172A),
+        colorScheme: ColorScheme.fromSeed(
+          seedColor: const Color(0xFF38BDF8),
+          brightness: Brightness.dark,
+          primary: const Color(0xFF38BDF8),
+          secondary: const Color(0xFF818CF8),
+          surface: const Color(0xFF0F172A),
+        ),
+        useMaterial3: true,
+        textTheme: const TextTheme(
+          bodyLarge: TextStyle(color: Color(0xFF94A3B8)),
+          bodyMedium: TextStyle(color: Color(0xFF94A3B8)),
+        ),
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: const PortfolioShell(),
     );
   }
 }
 
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({super.key, required this.title});
-
-  // This widget is the home page of your application. It is stateful, meaning
-  // that it has a State object (defined below) that contains fields that affect
-  // how it looks.
-
-  // This class is the configuration for the state. It holds the values (in this
-  // case the title) provided by the parent (in this case the App widget) and
-  // used by the build method of the State. Fields in a Widget subclass are
-  // always marked "final".
-
-  final String title;
+class PortfolioShell extends StatefulWidget {
+  const PortfolioShell({super.key});
 
   @override
-  State<MyHomePage> createState() => _MyHomePageState();
+  State<PortfolioShell> createState() => _PortfolioShellState();
 }
 
-class _MyHomePageState extends State<MyHomePage> {
-  int _counter = 0;
+class _PortfolioShellState extends State<PortfolioShell> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final ScrollController _scrollController = ScrollController();
+  final List<GlobalKey> _keys = List.generate(5, (index) => GlobalKey());
 
-  void _incrementCounter() {
-    setState(() {
-      // This call to setState tells the Flutter framework that something has
-      // changed in this State, which causes it to rerun the build method below
-      // so that the display can reflect the updated values. If we changed
-      // _counter without calling setState(), then the build method would not be
-      // called again, and so nothing would appear to happen.
-      _counter++;
-    });
+  void _scrollTo(int index) {
+    // If the drawer is open on mobile, close it before scrolling.
+    if (_scaffoldKey.currentState?.isEndDrawerOpen ?? false) {
+      Navigator.pop(context);
+    }
+
+    final targetContext = _keys[index].currentContext;
+    if (targetContext != null) {
+      Scrollable.ensureVisible(
+        targetContext,
+        duration: const Duration(milliseconds: 700),
+        curve: Curves.easeInOutCubic,
+      );
+    }
   }
 
   @override
   Widget build(BuildContext context) {
-    // This method is rerun every time setState is called, for instance as done
-    // by the _incrementCounter method above.
-    //
-    // The Flutter framework has been optimized to make rerunning build methods
-    // fast, so that you can just rebuild anything that needs updating rather
-    // than having to individually change instances of widgets.
+    final isMobile = ResponsiveLayout.isMobile(context);
+    final size = MediaQuery.sizeOf(context);
+
+    // Padding helper to center content nicely on large screens
+    double horizontalPadding = 24.0;
+    if (size.width > 1200) {
+      horizontalPadding = size.width * 0.12; // 12% margin left/right
+    } else if (size.width > 800) {
+      horizontalPadding = size.width * 0.06; // 6% margin
+    }
+
     return Scaffold(
-      appBar: AppBar(
-        // TRY THIS: Try changing the color here to a specific color (to
-        // Colors.amber, perhaps?) and trigger a hot reload to see the AppBar
-        // change color while the other colors stay the same.
-        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        // Here we take the value from the MyHomePage object that was created by
-        // the App.build method, and use it to set our appbar title.
-        title: Text(widget.title),
+      key: _scaffoldKey,
+      extendBodyBehindAppBar: true,
+      appBar: GlassAppBar(
+        onMenuPressed: () => _scaffoldKey.currentState?.openEndDrawer(),
+        onNavTap: _scrollTo,
+        isMobile: isMobile,
       ),
-      body: Center(
-        // Center is a layout widget. It takes a single child and positions it
-        // in the middle of the parent.
+      endDrawer: isMobile ? _buildMobileDrawer() : null,
+      body: Stack(
+        children: [
+          // Background atmospheric glows
+          Positioned(
+            top: -200,
+            left: -200,
+            child: Container(
+              width: 600,
+              height: 600,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: const Color(0xFF38BDF8).withOpacity(0.04),
+              ),
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 120, sigmaY: 120),
+                child: Container(color: Colors.transparent),
+              ),
+            ),
+          ),
+          Positioned(
+            bottom: size.height * 0.2,
+            right: -200,
+            child: Container(
+              width: 500,
+              height: 500,
+              decoration: BoxDecoration(
+                shape: BoxShape.circle,
+                color: const Color(0xFF818CF8).withOpacity(0.04),
+              ),
+              child: BackdropFilter(
+                filter: ImageFilter.blur(sigmaX: 100, sigmaY: 100),
+                child: Container(color: Colors.transparent),
+              ),
+            ),
+          ),
+          // Main content scroll view
+          SafeArea(
+            top: false, // Allows content to flow under the GlassAppBar
+            child: SingleChildScrollView(
+              controller: _scrollController,
+              padding: EdgeInsets.symmetric(horizontal: horizontalPadding),
+              child: Column(
+                children: [
+                  const SizedBox(height: 80), // AppBar offset spacing
+                  
+                  // 0. Hero Section
+                  Container(
+                    key: _keys[0],
+                    padding: const EdgeInsets.symmetric(vertical: 40),
+                    child: HeroSection(
+                      onViewWork: () => _scrollTo(2),
+                      onContact: () => _scrollTo(4),
+                    ),
+                  ),
+
+                  // 1. About Section
+                  Container(
+                    key: _keys[1],
+                    padding: const EdgeInsets.symmetric(vertical: 60),
+                    child: const AboutSection(),
+                  ),
+
+                  // 2. Projects Section
+                  Container(
+                    key: _keys[2],
+                    padding: const EdgeInsets.symmetric(vertical: 60),
+                    child: const ProjectsSection(),
+                  ),
+
+                  // 3. Experience Section
+                  Container(
+                    key: _keys[3],
+                    padding: const EdgeInsets.symmetric(vertical: 60),
+                    child: const ExperienceSection(),
+                  ),
+
+                  // 4. Contact Section
+                  Container(
+                    key: _keys[4],
+                    padding: const EdgeInsets.symmetric(vertical: 60),
+                    child: const ContactSection(),
+                  ),
+
+                  const SizedBox(height: 60),
+                  
+                  // Footer
+                  _buildFooter(),
+                  
+                  const SizedBox(height: 40),
+                ],
+              ),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildMobileDrawer() {
+    return Drawer(
+      backgroundColor: const Color(0xFF0F172A),
+      child: SafeArea(
         child: Column(
-          // Column is also a layout widget. It takes a list of children and
-          // arranges them vertically. By default, it sizes itself to fit its
-          // children horizontally, and tries to be as tall as its parent.
-          //
-          // Column has various properties to control how it sizes itself and
-          // how it positions its children. Here we use mainAxisAlignment to
-          // center the children vertically; the main axis here is the vertical
-          // axis because Columns are vertical (the cross axis would be
-          // horizontal).
-          //
-          // TRY THIS: Invoke "debug painting" (choose the "Toggle Debug Paint"
-          // action in the IDE, or press "p" in the console), to see the
-          // wireframe for each widget.
-          mainAxisAlignment: .center,
           children: [
-            const Text('You have pushed the button this many times:'),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.headlineMedium,
+            Container(
+              padding: const EdgeInsets.all(24),
+              alignment: Alignment.centerLeft,
+              decoration: const BoxDecoration(
+                border: Border(
+                  bottom: BorderSide(color: Color(0xFF1E293B)),
+                ),
+              ),
+              child: const Text(
+                'AH. Navigation',
+                style: TextStyle(
+                  color: Colors.white,
+                  fontSize: 20,
+                  fontWeight: FontWeight.bold,
+                ),
+              ),
+            ),
+            Expanded(
+              child: ListView(
+                padding: const EdgeInsets.symmetric(vertical: 16),
+                children: [
+                  _buildDrawerItem('Home', Icons.home_outlined, 0),
+                  _buildDrawerItem('About', Icons.person_outline_rounded, 1),
+                  _buildDrawerItem('Projects', Icons.layers_outlined, 2),
+                  _buildDrawerItem('Experience', Icons.work_history_outlined, 3),
+                  _buildDrawerItem('Contact', Icons.mail_outline_rounded, 4),
+                ],
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsets.all(24.0),
+              child: OutlinedButton(
+                onPressed: () {
+                  Navigator.pop(context);
+                },
+                style: OutlinedButton.styleFrom(
+                  foregroundColor: const Color(0xFF38BDF8),
+                  side: const BorderSide(color: Color(0xFF38BDF8)),
+                  minimumSize: const Size(double.infinity, 50),
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(10),
+                  ),
+                ),
+                child: const Text(
+                  'Close Menu',
+                  style: TextStyle(fontWeight: FontWeight.bold),
+                ),
+              ),
             ),
           ],
         ),
       ),
-      floatingActionButton: FloatingActionButton(
-        onPressed: _incrementCounter,
-        tooltip: 'Increment',
-        child: const Icon(Icons.add),
+    );
+  }
+
+  Widget _buildDrawerItem(String title, IconData icon, int index) {
+    return ListTile(
+      leading: Icon(icon, color: const Color(0xFF38BDF8)),
+      title: Text(
+        title,
+        style: const TextStyle(
+          color: Colors.white,
+          fontSize: 16,
+          fontWeight: FontWeight.w600,
+        ),
       ),
+      onTap: () => _scrollTo(index),
+    );
+  }
+
+  Widget _buildFooter() {
+    return Container(
+      padding: const EdgeInsets.symmetric(vertical: 24),
+      decoration: const BoxDecoration(
+        border: Border(
+          top: BorderSide(color: Color(0xFF1E293B)),
+        ),
+      ),
+      alignment: Alignment.center,
+      child: Column(
+        children: [
+          Text(
+            'Designed & Built by Ajijul Hoque',
+            style: TextStyle(
+              color: const Color(0xFF94A3B8).withOpacity(0.8),
+              fontSize: 14,
+              fontWeight: FontWeight.w600,
+            ),
+          ),
+          const SizedBox(height: 8),
+          Text(
+            'Powered by Flutter & Dart',
+            style: TextStyle(
+              color: const Color(0xFF94A3B8).withOpacity(0.5),
+              fontSize: 12,
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  @override
+  void dispose() {
+    _scrollController.dispose();
+    super.dispose();
+  }
+}
+
+class GlassAppBar extends StatelessWidget implements PreferredSizeWidget {
+  final VoidCallback onMenuPressed;
+  final Function(int) onNavTap;
+  final bool isMobile;
+
+  const GlassAppBar({
+    super.key,
+    required this.onMenuPressed,
+    required this.onNavTap,
+    required this.isMobile,
+  });
+
+  @override
+  Size get preferredSize => const Size.fromHeight(80.0);
+
+  @override
+  Widget build(BuildContext context) {
+    return ClipRRect(
+      child: BackdropFilter(
+        filter: ImageFilter.blur(sigmaX: 12, sigmaY: 12),
+        child: Container(
+          height: 80,
+          padding: const EdgeInsets.symmetric(horizontal: 24),
+          decoration: BoxDecoration(
+            color: const Color(0xFF0F172A).withOpacity(0.8),
+            border: Border(
+              bottom: BorderSide(
+                color: const Color(0xFF334155).withOpacity(0.3),
+                width: 1,
+              ),
+            ),
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              // Logo
+              HoverWidget(
+                builder: (context, isHovered) {
+                  return InkWell(
+                    onTap: () => onNavTap(0),
+                    child: Text(
+                      'AH.',
+                      style: TextStyle(
+                        color: isHovered ? const Color(0xFF38BDF8) : Colors.white,
+                        fontSize: 24,
+                        fontWeight: FontWeight.w900,
+                        letterSpacing: 1.2,
+                      ),
+                    ),
+                  );
+                },
+              ),
+              // Menu items
+              if (isMobile)
+                IconButton(
+                  icon: const Icon(Icons.menu_rounded, color: Colors.white, size: 28),
+                  onPressed: onMenuPressed,
+                )
+              else
+                Row(
+                  children: [
+                    _buildNavItem('About', () => onNavTap(1)),
+                    _buildNavItem('Projects', () => onNavTap(2)),
+                    _buildNavItem('Experience', () => onNavTap(3)),
+                    _buildNavItem('Contact', () => onNavTap(4)),
+                    const SizedBox(width: 16),
+                    OutlinedButton(
+                      onPressed: () {},
+                      style: OutlinedButton.styleFrom(
+                        foregroundColor: const Color(0xFF38BDF8),
+                        side: const BorderSide(color: Color(0xFF38BDF8), width: 1.5),
+                        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(8),
+                        ),
+                      ),
+                      child: const Text(
+                        'Resume',
+                        style: TextStyle(fontWeight: FontWeight.bold, fontSize: 13),
+                      ),
+                    ),
+                  ],
+                ),
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+
+  Widget _buildNavItem(String label, VoidCallback onTap) {
+    return HoverWidget(
+      builder: (context, isHovered) {
+        return Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 16.0),
+          child: InkWell(
+            onTap: onTap,
+            splashColor: Colors.transparent,
+            highlightColor: Colors.transparent,
+            hoverColor: Colors.transparent,
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  label,
+                  style: TextStyle(
+                    color: isHovered ? const Color(0xFF38BDF8) : const Color(0xFF94A3B8),
+                    fontSize: 14,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+                const SizedBox(height: 4),
+                AnimatedContainer(
+                  duration: const Duration(milliseconds: 200),
+                  width: isHovered ? 24 : 0,
+                  height: 2,
+                  color: const Color(0xFF38BDF8),
+                ),
+              ],
+            ),
+          ),
+        );
+      },
     );
   }
 }
