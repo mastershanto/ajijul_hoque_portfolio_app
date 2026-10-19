@@ -19,9 +19,8 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) =>
 
   const filterTabs = [
     { id: 'all', label: 'All Projects' },
-    { id: 'ai-engineering', label: 'AI & LangGraph' },
-    { id: 'cross-platform', label: 'Flutter & Cross-Platform' },
-    { id: 'enterprise', label: 'Clean Arch & Enterprise' },
+    { id: 'cross-platform', label: 'Flutter Mobile Apps' },
+    { id: 'enterprise', label: 'Clean Architecture' },
   ];
 
   const filteredProjects = projects.filter((p) => {
@@ -36,8 +35,6 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) =>
 
   const getCategoryIcon = (category: string) => {
     switch (category) {
-      case 'ai-engineering':
-        return <Network size={20} className={styles.catIconIndigo} />;
       case 'cross-platform':
         return <Layers size={20} className={styles.catIconRose} />;
       case 'enterprise':
@@ -52,8 +49,8 @@ export const ProjectsSection: React.FC<ProjectsSectionProps> = ({ projects }) =>
       <div className="container">
         <SectionHeader
           number="03"
-          title="Architectural Showcases & Flagship Projects"
-          subtitle="Battle-tested production systems solving non-trivial distributed challenges, multi-agent reasoning, and cross-platform fidelity."
+          title="Mobile Showcases & Featured Projects"
+          subtitle="Featured cross-platform Flutter mobile applications, production modules, and clean architectural foundations."
         />
 
         {/* Filter & Search Bar */}

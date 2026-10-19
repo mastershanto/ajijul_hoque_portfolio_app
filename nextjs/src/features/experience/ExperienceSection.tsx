@@ -18,7 +18,7 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experience
         <SectionHeader
           number="04"
           title="Engineering Timeline & Impact"
-          subtitle="A track record of shipping autonomous AI systems, cross-platform applications, and resilient cloud architectures."
+          subtitle="A proven track record of shipping cross-platform mobile applications with Flutter, currently contributing at Softvence IT Limited (1 year 7 months running)."
         />
 
         <div className={styles.timeline}>
@@ -57,7 +57,7 @@ export const ExperienceSection: React.FC<ExperienceSectionProps> = ({ experience
 
                   {/* Key Achievements */}
                   <div className={styles.achievementsBlock}>
-                    <h5 className={styles.achievementsTitle}>Key Architectural Impact</h5>
+                    <h5 className={styles.achievementsTitle}>Key Mobile Engineering Impact</h5>
                     <ul className={styles.achievementList}>
                       {exp.keyAchievements.map((ach, i) => (
                         <li key={i} className={styles.achievementItem}>

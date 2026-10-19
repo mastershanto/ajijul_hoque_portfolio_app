@@ -15,11 +15,11 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
   const [selectedCategory, setSelectedCategory] = useState<string>('all');
 
   const categories = [
-    { id: 'all', label: 'All Disciplines', icon: <Cpu size={16} /> },
-    { id: 'ai-agents', label: 'AI & Agentic Systems', icon: <Bot size={16} /> },
-    { id: 'fullstack-mobile', label: 'Cross-Platform & Web', icon: <Smartphone size={16} /> },
-    { id: 'backend-distributed', label: 'Backend & Polyglot APIs', icon: <Server size={16} /> },
-    { id: 'cloud-devops', label: 'Cloud, Vector DBs & DevOps', icon: <Cloud size={16} /> },
+    { id: 'all', label: 'All Technologies', icon: <Cpu size={16} /> },
+    { id: 'fullstack-mobile', label: 'Flutter & Mobile Core', icon: <Smartphone size={16} /> },
+    { id: 'backend-distributed', label: 'REST APIs & Backend', icon: <Server size={16} /> },
+    { id: 'cloud-devops', label: 'Firebase & App Stores', icon: <Cloud size={16} /> },
+    { id: 'ai-agents', label: 'AI Mobile Integration', icon: <Bot size={16} /> },
   ];
 
   const filteredSkills =
@@ -33,7 +33,7 @@ export const SkillsSection: React.FC<SkillsSectionProps> = ({ skills }) => {
         <SectionHeader
           number="02"
           title="Technical Competency Matrix"
-          subtitle="Specialized capabilities spanning autonomous agent orchestration, cross-platform UI systems, and high-throughput polyglot backends."
+          subtitle="Core mobile development toolkit centered around Flutter, Dart, BLoC/Riverpod, RESTful Dio networking, and Firebase infrastructure."
         />
 
         {/* Category Tabs */}

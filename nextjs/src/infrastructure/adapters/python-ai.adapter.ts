@@ -102,26 +102,30 @@ export class PythonAIAgentAdapter implements IAIAgentGateway {
     let text = '';
     const citations: string[] = [];
 
-    if (p.includes('langgraph') || p.includes('agent') || p.includes('ai') || p.includes('llm')) {
+    if (p.includes('softvence') || p.includes('tenure') || p.includes('experience') || p.includes('company')) {
       text =
-        "Ajijul architects autonomous multi-agent networks using LangGraph and Python. His core pattern utilizes cyclical state graphs with automated supervisor nodes, critique loops, and tool-use barriers to eliminate hallucinations. He has deployed 18+ production agents integrating Gemini 2.5, GPT-4o, and local Ollama inference pipelines.";
-      citations.push('Agentic Workflow Orchestrator (LangGraph)', 'Enterprise RAG Suite');
-    } else if (p.includes('backend') || p.includes('rust') || p.includes('go') || p.includes('asp.net') || p.includes('architecture')) {
+        "Ajijul has 2 years of professional experience in mobile development and has been contributing at Softvence IT Limited for 1 year and 7 months (running). At Softvence IT Limited, he architects and delivers production-grade Flutter mobile applications, integrates REST APIs and Firebase Push Notifications, and ensures 99.8%+ crash-free user sessions.";
+      citations.push('Softvence IT Limited (1 yr 7 mos running)', '2 Years Professional Mobile Exp');
+    } else if (p.includes('flutter') || p.includes('mobile') || p.includes('dart') || p.includes('bloc') || p.includes('riverpod') || p.includes('state')) {
       text =
-        "Ajijul implements strict Clean Hexagonal Architecture (Ports & Adapters) and SOLID principles. The system decouples domain rules from frameworks, making the application interchangeable with ASP.NET Core (C# CQRS/MediatR), Go (Gin concurrency), Rust (Axum memory-safe async), and Python FastAPI without UI rewrites.";
-      citations.push('Clean Architecture Specification', 'Polyglot Backend Interop Matrix');
-    } else if (p.includes('flutter') || p.includes('mobile') || p.includes('cross-platform') || p.includes('ui')) {
+        "Ajijul is a dedicated Mobile Application Developer specializing in Flutter and Dart SDK. He utilizes BLoC and Riverpod for predictable, reactive, and event-driven state orchestration, alongside custom painters and Material 3 design to deliver buttery 60-120 FPS animations.";
+      citations.push('Flutter 3.x & Dart SDK', 'BLoC & Riverpod State Engine');
+    } else if (p.includes('clean') || p.includes('architecture') || p.includes('solid')) {
       text =
-        "On the client tier, Ajijul crafts responsive, 120 FPS glassmorphic user interfaces using Flutter (with BLoC / Riverpod) and modern Next.js 16. His focus is on sub-100ms interaction feedback, accessible contrast ratios, and unified cross-platform state engines.";
-      citations.push('Flutter Multi-Platform Architecture', 'Next.js 16 Clean Frontend');
+        "In mobile development, Ajijul enforces Clean Mobile Architecture: strict separation across Presentation (UI & BLoC/Cubit), Domain (Pure Use Cases & Entities), and Data (Repositories, Dio Remote Clients & Hive/SQLite Local Storage). This ensures zero UI-data coupling and effortless unit testing.";
+      citations.push('Clean Mobile Architecture Specification', 'Domain-Driven Mobile Design');
+    } else if (p.includes('firebase') || p.includes('api') || p.includes('backend') || p.includes('dio')) {
+      text =
+        "Ajijul connects mobile applications with robust backend services using Dio HTTP client with custom auth interceptors, Firebase Cloud Messaging (FCM) for real-time push notifications, Cloud Firestore, and offline-first caching via SQLite and Hive.";
+      citations.push('Dio REST Networking', 'Firebase Suite for Mobile');
     } else if (p.includes('contact') || p.includes('hire') || p.includes('email') || p.includes('available')) {
       text =
-        "Ajijul is currently Available for select high-impact engineering projects, AI agent consulting, and full-stack systems architecture. You can reach him directly at ajijul.hoque.dev@gmail.com or submit the contact form below.";
+        "Ajijul is currently Available for Flutter mobile development roles, cross-platform app consulting, and collaborative engineering projects. You can reach him directly at ajijul.hoque.dev@gmail.com or submit the contact form below.";
       citations.push('ajijul.hoque.dev@gmail.com', 'Dhaka, Bangladesh (Remote Worldwide)');
     } else {
       text =
-        `Ajijul Hoque is an AI Systems Architect & Full-Stack Engineer specializing in self-correcting LangGraph multi-agent systems, cross-platform Flutter development, and 25-year sustainable Clean Architecture. Feel free to ask about his projects, tech stack, or system design approaches!`;
-      citations.push('Ajijul Hoque Portfolio Core', 'Systems Architecture Index');
+        `Ajijul Hoque is a Mobile Application Developer specializing in Flutter, Dart, and Clean Architecture with 2 years of professional experience, currently building production apps at Softvence IT Limited (1 year 7 months running). Feel free to ask about his mobile projects, state management techniques, or professional timeline!`;
+      citations.push('Ajijul Hoque Mobile Portfolio', 'Flutter & Dart Specialization');
     }
 
     return {

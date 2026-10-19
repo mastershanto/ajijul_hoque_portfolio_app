@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, Sparkles, Terminal, ShieldCheck, Download, Code2, Bot, Layers } from 'lucide-react';
+import { ArrowRight, Sparkles, Terminal, ShieldCheck, Download, Code2, Bot, Layers, Smartphone, SmartphoneNfc } from 'lucide-react';
 import { Badge } from '../../shared/components/Badge';
 import { Button } from '../../shared/components/Button';
 import { Profile } from '../../core/domain/entities';
@@ -33,10 +33,10 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
         <div className={styles.textContent}>
           <div className={styles.statusBadgeWrapper}>
             <Badge
-              label="Available for Autonomous AI & Systems Architecture"
+              label="Available for Flutter & Mobile Development"
               variant="cyan"
               pulseDot={true}
-              icon={<ShieldCheck size={14} />}
+              icon={<Smartphone size={14} />}
             />
           </div>
 
@@ -62,7 +62,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
               icon={<ArrowRight size={18} />}
               onClick={() => scrollTo('projects')}
             >
-              Explore Architecture & Projects
+              Explore Mobile Apps & Work
             </Button>
 
             <Button
@@ -71,30 +71,30 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
               icon={<Sparkles size={18} />}
               onClick={() => scrollTo('ai-copilot')}
             >
-              Consult AI Agent
+              Consult AI Assistant
             </Button>
           </div>
 
           {/* Quick Metrics */}
           <div className={styles.statsStrip}>
             <div className={styles.statItem}>
-              <span className={styles.statValue}>{profile.stats.productionAgentsDeployed}+</span>
-              <span className={styles.statLabel}>Production AI Agents</span>
+              <span className={styles.statValue}>2+ Years</span>
+              <span className={styles.statLabel}>Professional Exp</span>
             </div>
             <div className={styles.statDivider} />
             <div className={styles.statItem}>
-              <span className={styles.statValue}>25-Year</span>
-              <span className={styles.statLabel}>Clean Arch Standard</span>
+              <span className={styles.statValue}>1 yr 7 mos</span>
+              <span className={styles.statLabel}>Softvence IT (Running)</span>
             </div>
             <div className={styles.statDivider} />
             <div className={styles.statItem}>
-              <span className={styles.statValue}>{profile.stats.systemsArchitected}+</span>
-              <span className={styles.statLabel}>Cross-Platform Systems</span>
+              <span className={styles.statValue}>99.8%</span>
+              <span className={styles.statLabel}>Crash-Free Sessions</span>
             </div>
             <div className={styles.statDivider} />
             <div className={styles.statItem}>
               <span className={styles.statValue}>100%</span>
-              <span className={styles.statLabel}>Zero-Vendor Lock-in</span>
+              <span className={styles.statLabel}>Client Satisfaction</span>
             </div>
           </div>
         </div>
@@ -108,31 +108,31 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
             {/* Central Hexagonal Core */}
             <div className={styles.centralCore}>
               <div className={styles.coreInner}>
-                <Code2 size={48} className={styles.coreIcon} />
-                <span className={styles.coreLabel}>CLEAN ARCH</span>
-                <span className={styles.coreSub}>PORTS & ADAPTERS</span>
+                <Smartphone size={48} className={styles.coreIcon} />
+                <span className={styles.coreLabel}>FLUTTER CORE</span>
+                <span className={styles.coreSub}>DART & MOBILE ARCH</span>
               </div>
             </div>
 
             {/* Floating Satellite Badges */}
             <div className={`${styles.floatingBadge} ${styles.satTopLeft}`}>
-              <Bot size={15} className={styles.satIconCyan} />
-              <span>LangGraph Swarms</span>
+              <Layers size={15} className={styles.satIconCyan} />
+              <span>BLoC & Riverpod</span>
             </div>
 
             <div className={`${styles.floatingBadge} ${styles.satTopRight}`}>
-              <Terminal size={15} className={styles.satIconIndigo} />
-              <span>FastAPI / Python</span>
+              <Smartphone size={15} className={styles.satIconIndigo} />
+              <span>iOS & Android</span>
             </div>
 
             <div className={`${styles.floatingBadge} ${styles.satBottomLeft}`}>
               <Layers size={15} className={styles.satIconRose} />
-              <span>Flutter 120 FPS</span>
+              <span>Softvence IT Ltd</span>
             </div>
 
             <div className={`${styles.floatingBadge} ${styles.satBottomRight}`}>
               <ShieldCheck size={15} className={styles.satIconEmerald} />
-              <span>C# / Go / Rust Interop</span>
+              <span>Clean Mobile Arch</span>
             </div>
 
             {/* Interactive Code Stream Preview Window */}
@@ -141,16 +141,19 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
                 <span className={styles.codeDotRed} />
                 <span className={styles.codeDotYellow} />
                 <span className={styles.codeDotGreen} />
-                <span className={styles.codeTitle}>clean_architecture_contract.ts</span>
+                <span className={styles.codeTitle}>flutter_clean_architecture.dart</span>
               </div>
               <pre className={styles.codeBody}>
-                <code>{`// Domain is 100% independent of frameworks
-export interface IPortfolioRepository {
-  getProfile(): Promise<Result<Profile>>;
-}
+                <code>{`// Domain layer decoupled from UI & APIs
+class FetchProfileUseCase implements UseCase<Profile, NoParams> {
+  final IMobileRepository repository;
+  const FetchProfileUseCase(this.repository);
 
-// Seamlessly interchangeable at runtime
-container.setActiveBackend('python-ai');`}</code>
+  @override
+  Future<Either<Failure, Profile>> call(NoParams params) {
+    return repository.getProfile();
+  }
+}`}</code>
               </pre>
             </div>
           </div>

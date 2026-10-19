@@ -13,9 +13,9 @@ export const AICopilotSection: React.FC = () => {
     {
       id: 'welcome-msg',
       sender: 'agent',
-      text: "Hello! I am Ajijul's AI Twin, an agentic reasoning interface architected to demonstrate his LangGraph and Clean Architecture principles. Ask me about his multi-agent orchestration patterns, cross-platform Flutter systems, or how this frontend interfaces seamlessly with ASP.NET Core, Go, and Rust.",
+      text: "Hello! I am Ajijul's AI Assistant, trained on his mobile development background, Flutter expertise, Clean Architecture practices, and his 1 year 7 months of production engineering at Softvence IT Limited. Feel free to ask about his mobile projects, state management techniques, or professional timeline!",
       timestamp: 'Now',
-      citations: ['Autonomous Multi-Agent Architecture', 'LangGraph Reflection Loops'],
+      citations: ['Flutter Mobile Development', 'Softvence IT Limited', 'Clean Mobile Architecture'],
     },
   ]);
   const [inputPrompt, setInputPrompt] = useState('');
@@ -23,10 +23,10 @@ export const AICopilotSection: React.FC = () => {
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const samplePrompts = [
-    'How do you engineer self-correcting LangGraph agent loops?',
-    'Explain your 25-Year Clean Architecture standard',
-    'How does this frontend connect to ASP.NET Core & Rust Axum?',
-    'What is your Flutter cross-platform architecture?',
+    'Tell me about your experience at Softvence IT Limited',
+    'What Flutter state management libraries do you specialize in?',
+    'How do you structure Clean Architecture in mobile apps?',
+    'What is your experience with REST APIs and Firebase in mobile?',
   ];
 
   const scrollToBottom = () => {

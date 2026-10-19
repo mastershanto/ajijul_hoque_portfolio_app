@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Menu, X, Terminal, Cpu, Sparkles } from 'lucide-react';
+import { Menu, X, Terminal, Cpu, Sparkles, Smartphone } from 'lucide-react';
 import { useScrollSpy } from '../../shared/hooks/useScrollSpy';
 import styles from './Navbar.module.css';
 
@@ -38,11 +38,11 @@ export const Navbar: React.FC = () => {
       <div className={`container ${styles.navContainer}`}>
         <a href="#hero" className={styles.brand} onClick={(e) => { e.preventDefault(); handleNavClick('hero'); }}>
           <div className={styles.logoIcon}>
-            <Cpu size={22} className={styles.iconPulse} />
+            <Smartphone size={22} className={styles.iconPulse} />
           </div>
           <div className={styles.brandText}>
             <span className={styles.name}>Ajijul Hoque</span>
-            <span className={styles.title}>AI & Systems Architect</span>
+            <span className={styles.title}>Mobile Application Developer</span>
           </div>
         </a>
 

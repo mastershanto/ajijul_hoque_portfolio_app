@@ -68,7 +68,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
         <SectionHeader
           number="07"
           title="Initiate Collaboration"
-          subtitle="Whether you require an autonomous multi-agent reasoning architecture, a resilient cross-platform Flutter system, or a 25-year Clean Architecture audit—let's build together."
+          subtitle="Whether you require a dedicated Flutter Mobile Application Developer, a cross-platform architectural consultation, or a custom iOS/Android application—let's build together."
         />
 
         <div className={styles.contactGrid}>
@@ -77,7 +77,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
             <GlassCard className={styles.infoCard}>
               <h3 className={styles.infoHeading}>Direct Channels</h3>
               <p className={styles.infoText}>
-                I am currently receptive to senior technical architecture engagements, AI agent engineering contracts, and forward-looking advisory roles.
+                With 2 years of professional mobile experience and 1 year 7 months currently contributing at Softvence IT Limited, I am receptive to mobile engineering opportunities, cross-platform consulting, and collaborative projects.
               </p>
 
               <div className={styles.channelList}>

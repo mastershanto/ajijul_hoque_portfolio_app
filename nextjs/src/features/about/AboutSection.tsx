@@ -15,27 +15,27 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ profile }) => {
   const pillars = [
     {
       icon: <Shield size={24} className={styles.pillarIconCyan} />,
-      title: '25-Year Sustainability',
+      title: 'Clean Mobile Architecture',
       description:
-        'Standard web platform primitives, pure W3C CSS tokens, and Domain-Driven Design ensure zero framework lock-in. When React 25 or Next.js 30 arrives, the business core remains 100% intact.',
+        'Domain-driven isolation decoupling UI widgets from data layers. Presentation, Use Cases, and Repositories remain strictly separated so business logic survives framework upgrades.',
     },
     {
-      icon: <Cpu size={24} className={styles.pillarIconIndigo} />,
-      title: 'SOLID & Clean Architecture',
+      icon: <Layers size={24} className={styles.pillarIconIndigo} />,
+      title: 'BLoC & Riverpod Mastery',
       description:
-        'Dependency Inversion (DIP) and Interface Segregation (ISP) guide every module. High-level domain logic communicates through typed Ports, allowing low-level adapters to swap effortlessly.',
-    },
-    {
-      icon: <RefreshCw size={24} className={styles.pillarIconEmerald} />,
-      title: 'Polyglot Backend Interop',
-      description:
-        'Engineered to connect with any enterprise backend: ASP.NET Core 9 (MediatR CQRS), Go Gin (Goroutine microservices), Rust Axum (Memory-safe async), or Python AI (LangGraph & FastAPI).',
+        'Event-driven, predictable state machines with flutter_bloc and reactive dependency trees with Riverpod. Eliminates side-effects and guarantees unit testability across all mobile flows.',
     },
     {
       icon: <Zap size={24} className={styles.pillarIconRose} />,
-      title: 'Self-Correcting AI Agents',
+      title: 'Fluid 60-120 FPS UI/UX',
       description:
-        'Beyond naive LLM prompts: architecting stateful cyclic reasoning graphs with automated validation, critique nodes, and vector RAG pipelines that autonomously heal hallucinations.',
+        'Sub-16ms frame render budgets, custom painters, and responsive glassmorphism. Optimized widget rebuild lifecycles delivering silky, responsive experiences across low-end to flagship devices.',
+    },
+    {
+      icon: <RefreshCw size={24} className={styles.pillarIconEmerald} />,
+      title: 'Full Mobile Lifecycle',
+      description:
+        'End-to-end delivery: REST API integration via Dio interceptors, Firebase FCM push notifications, SQLite/Hive offline caching, and release management on Google Play and App Store.',
     },
   ];
 
@@ -44,15 +44,15 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ profile }) => {
       <div className="container">
         <SectionHeader
           number="01"
-          title="Architectural Philosophy & Engineering Bio"
-          subtitle="Building software systems designed to outlive short-term framework fads through strict modular boundaries and mathematical domain purity."
+          title="Mobile Engineering Philosophy & Bio"
+          subtitle="Crafting fluid, high-performance mobile applications and clean cross-platform architectures with Flutter & Dart."
         />
 
         <div className={styles.contentGrid}>
           {/* Left Column: Deep Bio Narrative */}
           <div className={styles.bioColumn}>
             <GlassCard className={styles.bioCard}>
-              <h3 className={styles.bioHeading}>Engineering for Longevity</h3>
+              <h3 className={styles.bioHeading}>Mobile Engineering Discipline</h3>
               {profile.fullBio.map((paragraph, index) => (
                 <p key={index} className={styles.bioParagraph}>
                   {paragraph}
@@ -62,15 +62,15 @@ export const AboutSection: React.FC<AboutSectionProps> = ({ profile }) => {
               <div className={styles.principleList}>
                 <div className={styles.principleItem}>
                   <CheckCircle2 size={18} className={styles.checkIcon} />
-                  <span><strong>Zero Vendor Lock-in:</strong> Clean boundaries between core contracts and infrastructure.</span>
+                  <span><strong>Clean Mobile Architecture:</strong> Decoupled Domain Use Cases, Data Sources, and UI layers.</span>
                 </div>
                 <div className={styles.principleItem}>
                   <CheckCircle2 size={18} className={styles.checkIcon} />
-                  <span><strong>Type-Safe Error Handling:</strong> Result monad pattern eliminating unhandled exceptions.</span>
+                  <span><strong>Predictable State:</strong> Reactive BLoC and Riverpod patterns preventing race conditions.</span>
                 </div>
                 <div className={styles.principleItem}>
                   <CheckCircle2 size={18} className={styles.checkIcon} />
-                  <span><strong>Cross-Platform Fluidity:</strong> Unified Flutter and React engineering.</span>
+                  <span><strong>Proven Production Delivery:</strong> 1 yr 7 mos running at Softvence IT Limited with 99.8% crash-free rate.</span>
                 </div>
               </div>
             </GlassCard>
