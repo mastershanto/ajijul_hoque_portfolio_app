@@ -1,7 +1,7 @@
 # 🏛️ Ajijul Hoque — 25-Year Sustainable Clean Architecture Portfolio
 
 > **Architectural Specification & Polyglot Multi-Agent Portfolio Platform**  
-> Engineered by a Principal Software Architect with 20+ years of software design discipline. Built to outlive short-term framework lifecycles and sustain for 25+ years through strict domain decoupling, pure W3C web standards, and SOLID principles.
+> Engineered by a Principal Software Architect with 20+ years of software design discipline. Built to outlive short-term framework lifecycles and sustain for 25+ years through strict domain decoupling, pure W3C web standards, and SOLID principles.j
 
 ---
 
