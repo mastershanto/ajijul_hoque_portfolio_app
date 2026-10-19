@@ -1,0 +1,332 @@
+.heroSection {
+  min-height: calc(100vh - var(--navbar-height));
+  display: flex;
+  align-items: center;
+  padding-top: calc(var(--navbar-height) + 40px);
+  padding-bottom: 60px;
+  position: relative;
+}
+
+.heroContainer {
+  display: grid;
+  grid-template-columns: 1.15fr 0.85fr;
+  gap: 48px;
+  align-items: center;
+}
+
+.textContent {
+  display: flex;
+  flex-direction: column;
+}
+
+.statusBadgeWrapper {
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 3.5rem;
+  font-weight: 900;
+  letter-spacing: -0.03em;
+  line-height: 1.1;
+  margin-bottom: 16px;
+  color: var(--text-primary);
+}
+
+.roleTicker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 24px;
+}
+
+.rolePrefix {
+  color: var(--text-secondary);
+}
+
+.roleText {
+  color: var(--accent-cyan);
+  animation: fadeInSlide 0.4s ease-out;
+  display: inline-block;
+}
+
+@keyframes fadeInSlide {
+  from {
+    opacity: 0;
+    transform: translateY(8px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.bioSummary {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  max-width: 620px;
+  margin-bottom: 36px;
+}
+
+.actionRow {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin-bottom: 48px;
+}
+
+.statsStrip {
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  padding: 20px 24px;
+  background: rgba(30, 41, 59, 0.45);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-lg);
+  backdrop-filter: blur(10px);
+  max-width: fit-content;
+}
+
+.statItem {
+  display: flex;
+  flex-direction: column;
+}
+
+.statValue {
+  font-size: 1.4rem;
+  font-weight: 900;
+  color: var(--accent-cyan);
+  font-family: var(--font-family-mono);
+  line-height: 1;
+  margin-bottom: 4px;
+}
+
+.statLabel {
+  font-size: 0.76rem;
+  color: var(--text-muted);
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.statDivider {
+  width: 1px;
+  height: 32px;
+  background: var(--border-subtle);
+}
+
+/* Graphic Content Right Column */
+.graphicContent {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.hologramStage {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  height: 480px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.auraGlow {
+  position: absolute;
+  width: 320px;
+  height: 320px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.22) 0%, rgba(129, 140, 248, 0.15) 50%, transparent 70%);
+  filter: blur(40px);
+  animation: pulseAura 4s ease-in-out infinite alternate;
+}
+
+@keyframes pulseAura {
+  0% { transform: scale(0.9); opacity: 0.7; }
+  100% { transform: scale(1.1); opacity: 1; }
+}
+
+.centralCore {
+  width: 220px;
+  height: 220px;
+  border-radius: var(--radius-xl);
+  background: linear-gradient(135deg, rgba(30, 41, 59, 0.95), rgba(15, 23, 42, 0.95));
+  border: 2px solid rgba(56, 189, 248, 0.4);
+  box-shadow: 0 0 35px rgba(56, 189, 248, 0.25), inset 0 0 20px rgba(56, 189, 248, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2;
+  transition: transform var(--transition-base);
+}
+
+.centralCore:hover {
+  transform: scale(1.05);
+}
+
+.coreInner {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 8px;
+}
+
+.coreIcon {
+  color: var(--accent-cyan);
+}
+
+.coreLabel {
+  font-size: 0.95rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: var(--text-primary);
+}
+
+.coreSub {
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: var(--accent-cyan);
+  letter-spacing: 0.05em;
+}
+
+/* Floating Satellites */
+.floatingBadge {
+  position: absolute;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 8px 14px;
+  background: rgba(15, 23, 42, 0.85);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-full);
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  backdrop-filter: blur(12px);
+  box-shadow: var(--shadow-md);
+  z-index: 3;
+  animation: floatOrb 5s ease-in-out infinite;
+}
+
+.satTopLeft {
+  top: 40px;
+  left: 10px;
+  animation-delay: 0s;
+}
+
+.satTopRight {
+  top: 50px;
+  right: 10px;
+  animation-delay: 1.2s;
+}
+
+.satBottomLeft {
+  bottom: 80px;
+  left: 0px;
+  animation-delay: 2.4s;
+}
+
+.satBottomRight {
+  bottom: 90px;
+  right: 15px;
+  animation-delay: 3.6s;
+}
+
+@keyframes floatOrb {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+.satIconCyan { color: var(--accent-cyan); }
+.satIconIndigo { color: var(--accent-indigo); }
+.satIconRose { color: var(--accent-rose); }
+.satIconEmerald { color: var(--accent-emerald); }
+
+/* Code preview card overlay */
+.codePreviewCard {
+  position: absolute;
+  bottom: -20px;
+  width: 90%;
+  max-width: 380px;
+  background: rgba(9, 13, 22, 0.92);
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  border-radius: var(--radius-md);
+  backdrop-filter: blur(16px);
+  box-shadow: var(--shadow-lg), 0 0 25px rgba(0, 0, 0, 0.7);
+  z-index: 4;
+  overflow: hidden;
+}
+
+.codeCardHeader {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 12px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.codeDotRed, .codeDotYellow, .codeDotGreen {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.codeDotRed { background: #ef4444; }
+.codeDotYellow { background: #f59e0b; }
+.codeDotGreen { background: #10b981; }
+
+.codeTitle {
+  font-family: var(--font-family-mono);
+  font-size: 0.7rem;
+  color: var(--text-muted);
+  margin-left: 6px;
+}
+
+.codeBody {
+  padding: 12px;
+  font-family: var(--font-family-mono);
+  font-size: 0.75rem;
+  line-height: 1.5;
+  color: var(--accent-cyan);
+  overflow-x: auto;
+}
+
+@media (max-width: 1024px) {
+  .heroContainer {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+  .title {
+    font-size: 2.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .title {
+    font-size: 2.2rem;
+  }
+  .roleTicker {
+    font-size: 1.15rem;
+    flex-wrap: wrap;
+  }
+  .statsStrip {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    width: 100%;
+  }
+  .statDivider {
+    display: none;
+  }
+  .hologramStage {
+    max-width: 320px;
+    height: 380px;
+  }
+}

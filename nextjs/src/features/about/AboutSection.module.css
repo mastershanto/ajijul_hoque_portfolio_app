@@ -1,0 +1,121 @@
+.aboutSection {
+  position: relative;
+}
+
+.contentGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+}
+
+.bioColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.bioCard {
+  padding: 32px;
+}
+
+.bioHeading {
+  font-size: 1.5rem;
+  font-weight: 800;
+  color: var(--text-primary);
+  margin-bottom: 20px;
+}
+
+.bioParagraph {
+  font-size: 1.02rem;
+  line-height: 1.7;
+  color: var(--text-secondary);
+  margin-bottom: 18px;
+}
+
+.principleList {
+  margin-top: 24px;
+  padding-top: 24px;
+  border-top: 1px solid var(--border-subtle);
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.principleItem {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  font-size: 0.92rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+.principleItem strong {
+  color: var(--text-primary);
+}
+
+.checkIcon {
+  color: var(--accent-cyan);
+  flex-shrink: 0;
+  margin-top: 2px;
+}
+
+/* Pillars Column */
+.pillarsColumn {
+  display: flex;
+  flex-direction: column;
+}
+
+.pillarsGrid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.pillarCard {
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
+}
+
+.pillarIconWrapper {
+  width: 48px;
+  height: 48px;
+  border-radius: var(--radius-md);
+  background: rgba(15, 23, 42, 0.8);
+  border: 1px solid var(--border-subtle);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 16px;
+}
+
+.pillarIconCyan { color: var(--accent-cyan); }
+.pillarIconIndigo { color: var(--accent-indigo); }
+.pillarIconEmerald { color: var(--accent-emerald); }
+.pillarIconRose { color: var(--accent-rose); }
+
+.pillarTitle {
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--text-primary);
+  margin-bottom: 10px;
+}
+
+.pillarDescription {
+  font-size: 0.88rem;
+  color: var(--text-secondary);
+  line-height: 1.6;
+}
+
+@media (max-width: 1024px) {
+  .contentGrid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 640px) {
+  .pillarsGrid {
+    grid-template-columns: 1fr;
+  }
+}
