@@ -1,8 +1,9 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Menu, X, Terminal, Cpu, Sparkles, Smartphone } from 'lucide-react';
+import { Menu, X, Terminal, Cpu, Sparkles, Smartphone, FileText } from 'lucide-react';
 import { useScrollSpy } from '../../shared/hooks/useScrollSpy';
+import { openCVModal } from '../cv/CVModalContainer';
 import styles from './Navbar.module.css';
 
 interface NavItem {
@@ -67,13 +68,23 @@ export const Navbar: React.FC = () => {
 
         {/* Action Button & Mobile Toggle */}
         <div className={styles.navActions}>
+          <button
+            type="button"
+            className={styles.cvCta}
+            onClick={openCVModal}
+            title="View Full Curriculum Vitae"
+          >
+            <FileText size={14} />
+            <span>CV</span>
+          </button>
+
           <a
             href="#ai-copilot"
             className={styles.copilotCta}
             onClick={(e) => { e.preventDefault(); handleNavClick('ai-copilot'); }}
           >
             <Sparkles size={14} />
-            <span>Launch Agent</span>
+            <span>AI Assistant</span>
           </a>
 
           <button
@@ -99,6 +110,15 @@ export const Navbar: React.FC = () => {
                 {item.label}
               </button>
             ))}
+            <button
+              type="button"
+              className={styles.cvCta}
+              style={{ width: '100%', justifyContent: 'center', marginTop: '8px' }}
+              onClick={() => { setMobileMenuOpen(false); openCVModal(); }}
+            >
+              <FileText size={14} />
+              <span>View Full CV / Resume</span>
+            </button>
             <a
               href="#contact"
               className={styles.mobileCta}

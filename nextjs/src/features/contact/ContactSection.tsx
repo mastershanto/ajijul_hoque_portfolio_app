@@ -1,12 +1,13 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Mail, MapPin, Send, Check, Copy, MessageSquare, CheckCircle2 } from 'lucide-react';
+import { Mail, MapPin, Send, Check, Copy, MessageSquare, CheckCircle2, FileText } from 'lucide-react';
 import { GithubIcon, LinkedinIcon, TwitterIcon } from '../../shared/components/BrandIcons';
 import { SectionHeader } from '../../shared/components/SectionHeader';
 import { GlassCard } from '../../shared/components/GlassCard';
 import { Button } from '../../shared/components/Button';
 import { Profile } from '../../core/domain/entities';
+import { openCVModal } from '../cv/CVModalContainer';
 import { container } from '../../infrastructure/container';
 import styles from './ContactSection.module.css';
 
@@ -145,6 +146,18 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
                     </a>
                   )}
                 </div>
+              </div>
+
+              <div style={{ marginTop: '1.5rem', paddingTop: '1.25rem', borderTop: '1px solid rgba(255,255,255,0.08)' }}>
+                <Button
+                  variant="primary"
+                  size="md"
+                  icon={<FileText size={16} />}
+                  onClick={openCVModal}
+                  style={{ width: '100%', justifyContent: 'center' }}
+                >
+                  View & Download Full CV
+                </Button>
               </div>
             </GlassCard>
           </div>

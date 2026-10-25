@@ -1,0 +1,391 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(15, 23, 42, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  z-index: 9999;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  overflow-y: auto;
+  animation: fadeIn 0.25s ease-out;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.modalCard {
+  background: #0f172a;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.6), 0 0 40px rgba(56, 189, 248, 0.15);
+  border-radius: 16px;
+  width: 100%;
+  max-width: 900px;
+  max-height: 90vh;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  color: #e2e8f0;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.25rem 1.75rem;
+  background: rgba(30, 41, 59, 0.7);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.headerTitleRow {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.cvBadge {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+  border: 1px solid rgba(56, 189, 248, 0.3);
+  padding: 0.25rem 0.6rem;
+  border-radius: 6px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 0.05em;
+}
+
+.modalHeading {
+  font-size: 1.25rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+}
+
+.headerActions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.printBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #38bdf8;
+  color: #0f172a;
+  border: none;
+  font-weight: 700;
+  font-size: 0.85rem;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.printBtn:hover {
+  background: #7dd3fc;
+  transform: translateY(-1px);
+}
+
+.closeBtn {
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  color: #94a3b8;
+  width: 36px;
+  height: 36px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.closeBtn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  color: #f87171;
+  border-color: rgba(239, 68, 68, 0.4);
+}
+
+.modalBody {
+  padding: 2rem 2.25rem;
+  overflow-y: auto;
+  font-size: 0.95rem;
+  line-height: 1.6;
+}
+
+/* CV Document Layout */
+.cvPaper {
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.cvHero {
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding-bottom: 1.5rem;
+}
+
+.candidateName {
+  font-size: 2.2rem;
+  font-weight: 900;
+  color: #ffffff;
+  letter-spacing: -0.02em;
+  margin: 0 0 0.35rem 0;
+}
+
+.candidateRole {
+  font-size: 1.15rem;
+  color: #38bdf8;
+  font-weight: 700;
+  margin: 0 0 1rem 0;
+}
+
+.contactStrip {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.25rem;
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+.contactItem {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.contactLink {
+  color: #cbd5e1;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.contactLink:hover {
+  color: #38bdf8;
+}
+
+.cvSection {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+}
+
+.sectionTitle {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #38bdf8;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+  padding-bottom: 0.4rem;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.summaryText {
+  color: #cbd5e1;
+  margin: 0;
+}
+
+/* Skills Matrix */
+.skillsBlock {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+}
+
+.skillGroup {
+  background: rgba(30, 41, 59, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  padding: 0.9rem;
+  border-radius: 8px;
+}
+
+.skillGroupTitle {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #e2e8f0;
+  margin: 0 0 0.5rem 0;
+}
+
+.skillTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.skillPill {
+  background: rgba(56, 189, 248, 0.1);
+  color: #38bdf8;
+  font-size: 0.75rem;
+  font-weight: 600;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+}
+
+/* Experience Items */
+.timelineList {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.expCard {
+  background: rgba(30, 41, 59, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-left: 3px solid #38bdf8;
+  padding: 1.25rem;
+  border-radius: 0 8px 8px 0;
+}
+
+.expHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 0.35rem;
+}
+
+.expRole {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0;
+}
+
+.expPeriod {
+  font-size: 0.85rem;
+  color: #38bdf8;
+  font-weight: 700;
+}
+
+.expOrgRow {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  margin-bottom: 0.75rem;
+}
+
+.orgName {
+  color: #cbd5e1;
+  font-weight: 600;
+}
+
+.bulletList {
+  margin: 0;
+  padding-left: 1.2rem;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.bulletList li strong {
+  color: #e2e8f0;
+}
+
+/* Project Cards in CV */
+.projectCvGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1rem;
+}
+
+.projectCvCard {
+  background: rgba(30, 41, 59, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  padding: 1rem;
+  border-radius: 8px;
+}
+
+.projCvTitle {
+  font-size: 0.95rem;
+  font-weight: 800;
+  color: #ffffff;
+  margin: 0 0 0.35rem 0;
+}
+
+.projCvDesc {
+  font-size: 0.85rem;
+  color: #94a3b8;
+  margin: 0 0 0.5rem 0;
+}
+
+.projCvMetrics {
+  color: #10b981;
+  font-size: 0.8rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+}
+
+.projCvTags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem;
+}
+
+.projCvTag {
+  background: rgba(255, 255, 255, 0.06);
+  color: #cbd5e1;
+  font-size: 0.72rem;
+  padding: 0.15rem 0.4rem;
+  border-radius: 4px;
+}
+
+/* Print Media Styles */
+@media print {
+  .overlay {
+    position: static;
+    background: transparent;
+    padding: 0;
+  }
+  .modalCard {
+    border: none;
+    box-shadow: none;
+    max-height: none;
+    max-width: 100%;
+    color: #1e293b;
+    background: #ffffff;
+  }
+  .modalHeader, .headerActions {
+    display: none;
+  }
+  .candidateName {
+    color: #0f172a;
+  }
+  .candidateRole {
+    color: #0284c7;
+  }
+  .sectionTitle {
+    color: #0284c7;
+    border-bottom: 1px solid #cbd5e1;
+  }
+  .contactStrip, .summaryText, .bulletList, .projCvDesc {
+    color: #334155;
+  }
+  .skillGroup, .expCard, .projectCvCard {
+    background: #f8fafc;
+    border: 1px solid #e2e8f0;
+  }
+  .expCard {
+    border-left: 3px solid #0284c7;
+  }
+  .expRole, .projCvTitle, .skillGroupTitle, .orgName {
+    color: #0f172a;
+  }
+  .skillPill {
+    background: #e0f2fe;
+    color: #0369a1;
+  }
+}

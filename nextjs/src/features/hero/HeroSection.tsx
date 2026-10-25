@@ -1,10 +1,11 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { ArrowRight, Sparkles, Terminal, ShieldCheck, Download, Code2, Bot, Layers, Smartphone, SmartphoneNfc } from 'lucide-react';
+import { ArrowRight, Sparkles, Terminal, ShieldCheck, Download, Code2, Bot, Layers, Smartphone, FileText } from 'lucide-react';
 import { Badge } from '../../shared/components/Badge';
 import { Button } from '../../shared/components/Button';
 import { Profile } from '../../core/domain/entities';
+import { openCVModal } from '../cv/CVModalContainer';
 import styles from './HeroSection.module.css';
 
 interface HeroSectionProps {
@@ -62,16 +63,25 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
               icon={<ArrowRight size={18} />}
               onClick={() => scrollTo('projects')}
             >
-              Explore Mobile Apps & Work
+              Explore Mobile Apps
             </Button>
 
             <Button
               variant="secondary"
               size="lg"
+              icon={<FileText size={18} />}
+              onClick={openCVModal}
+            >
+              View CV / Resume
+            </Button>
+
+            <Button
+              variant="outline"
+              size="lg"
               icon={<Sparkles size={18} />}
               onClick={() => scrollTo('ai-copilot')}
             >
-              Consult AI Assistant
+              Consult AI
             </Button>
           </div>
 

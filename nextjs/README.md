@@ -1,7 +1,7 @@
-# 🏛️ Ajijul Hoque — 25-Year Sustainable Clean Architecture Portfolio
+# 📱 Ajijul Hoque — Mobile Application Developer (Flutter) Portfolio
 
-> **Architectural Specification & Polyglot Multi-Agent Portfolio Platform**  
-> Engineered by a Principal Software Architect with 20+ years of software design discipline. Built to outlive short-term framework lifecycles and sustain for 25+ years through strict domain decoupling, pure W3C web standards, and SOLID principles.j
+> **Architectural Specification & Production Mobile Portfolio Platform**  
+> Engineered by a Mobile Application Developer with 2 years of professional experience, currently building at Softvence IT Limited (1 year 7 months running). Built with Clean Architecture, fluid 60-120 FPS rendering, BLoC/Riverpod state management, and strict domain decoupling.
 
 ---
 

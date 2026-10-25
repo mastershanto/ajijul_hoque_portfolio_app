@@ -9,6 +9,7 @@ import { AICopilotSection } from '../features/ai-copilot/AICopilotSection';
 import { BackendInteropSection } from '../features/backend-interop/BackendInteropSection';
 import { ContactSection } from '../features/contact/ContactSection';
 import { Footer } from '../features/footer/Footer';
+import { CVModalContainer } from '../features/cv/CVModalContainer';
 import { container } from '../infrastructure/container';
 
 export default async function HomePage() {
@@ -71,6 +72,14 @@ export default async function HomePage() {
 
       {/* System Architecture Telemetry Footer */}
       <Footer />
+
+      {/* Interactive & Printable Professional CV / Resume Modal */}
+      <CVModalContainer
+        profile={profile}
+        experiences={experiences}
+        projects={projects}
+        skills={skills}
+      />
     </div>
   );
 }
