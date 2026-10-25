@@ -5,20 +5,19 @@ import { Bot, Send, Sparkles, Terminal, User, RefreshCw, BookOpen } from 'lucide
 import { SectionHeader } from '../../shared/components/SectionHeader';
 import { ChatMessage } from '../../core/domain/entities';
 import { container } from '../../infrastructure/container';
+import { useAppDispatch, useAppSelector } from '../../shared/store/hooks';
+import {
+  addMessage,
+  updateMessageText,
+  replaceMessage,
+  setStreaming,
+} from './copilotSlice';
 import styles from './AICopilotSection.module.css';
 
 export const AICopilotSection: React.FC = () => {
-  const [messages, setMessages] = useState<readonly ChatMessage[]>([
-    {
-      id: 'welcome-msg',
-      sender: 'agent',
-      text: "Hello! I am Ajijul's AI Assistant, trained on his mobile development background, Flutter expertise, Clean Architecture practices, and his 1 year 7 months of production engineering at Softvence IT Limited. Feel free to ask about his mobile projects, state management techniques, or professional timeline!",
-      timestamp: 'Now',
-      citations: ['Flutter Mobile Development', 'Softvence IT Limited', 'Clean Mobile Architecture'],
-    },
-  ]);
+  const dispatch = useAppDispatch();
+  const { messages, isStreaming } = useAppSelector((state) => state.copilot);
   const [inputPrompt, setInputPrompt] = useState('');
-  const [isStreaming, setIsStreaming] = useState(false);
   const messagesEndRef = useRef<HTMLDivElement>(null);
 
   const samplePrompts = [
@@ -53,8 +52,8 @@ export const AICopilotSection: React.FC = () => {
         timestamp: timeStr,
       };
 
-      setMessages((prev) => [...prev, userMessage]);
-      setIsStreaming(true);
+      dispatch(addMessage(userMessage));
+      dispatch(setStreaming(true));
 
       const agentGateway = container.getAgentGateway();
 
@@ -67,32 +66,24 @@ export const AICopilotSection: React.FC = () => {
         timestamp: timeStr,
       };
 
-      setMessages((prev) => [...prev, initialAgentMessage]);
+      dispatch(addMessage(initialAgentMessage));
 
       if (agentGateway.streamMessage) {
         let accumulatedText = '';
         await agentGateway.streamMessage(prompt, messages, (chunk) => {
           accumulatedText += chunk;
-          setMessages((prev) =>
-            prev.map((msg) =>
-              msg.id === agentMsgId ? { ...msg, text: accumulatedText } : msg
-            )
-          );
+          dispatch(updateMessageText({ id: agentMsgId, text: accumulatedText }));
         });
       } else {
         const res = await agentGateway.sendMessage(prompt, messages);
         if (res.success) {
-          setMessages((prev) =>
-            prev.map((msg) =>
-              msg.id === agentMsgId ? res.data : msg
-            )
-          );
+          dispatch(replaceMessage(res.data));
         }
       }
 
-      setIsStreaming(false);
+      dispatch(setStreaming(false));
     },
-    [inputPrompt, isStreaming, messages]
+    [dispatch, inputPrompt, isStreaming, messages]
   );
 
   return (

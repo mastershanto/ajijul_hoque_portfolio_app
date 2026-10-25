@@ -1,9 +1,10 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Menu, X, Terminal, Cpu, Sparkles, Smartphone, FileText } from 'lucide-react';
+import { Menu, X, Terminal, Sparkles, Smartphone, FileText } from 'lucide-react';
 import { useScrollSpy } from '../../shared/hooks/useScrollSpy';
-import { openCVModal } from '../cv/CVModalContainer';
+import { useAppDispatch } from '../../shared/store/hooks';
+import { openCVModal } from '../cv/cvSlice';
 import styles from './Navbar.module.css';
 
 interface NavItem {
@@ -23,6 +24,7 @@ const NAV_ITEMS: readonly NavItem[] = [
 ];
 
 export const Navbar: React.FC = () => {
+  const dispatch = useAppDispatch();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const activeSection = useScrollSpy(NAV_ITEMS.map((item) => item.id), 120);
 
@@ -71,7 +73,7 @@ export const Navbar: React.FC = () => {
           <button
             type="button"
             className={styles.cvCta}
-            onClick={openCVModal}
+            onClick={() => dispatch(openCVModal())}
             title="View Full Curriculum Vitae"
           >
             <FileText size={14} />
@@ -114,7 +116,10 @@ export const Navbar: React.FC = () => {
               type="button"
               className={styles.cvCta}
               style={{ width: '100%', justifyContent: 'center', marginTop: '8px' }}
-              onClick={() => { setMobileMenuOpen(false); openCVModal(); }}
+              onClick={() => {
+                setMobileMenuOpen(false);
+                dispatch(openCVModal());
+              }}
             >
               <FileText size={14} />
               <span>View Full CV / Resume</span>

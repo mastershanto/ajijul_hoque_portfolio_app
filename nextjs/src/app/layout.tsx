@@ -1,5 +1,7 @@
+import { Suspense } from 'react';
 import type { Metadata } from 'next';
 import { Geist, Geist_Mono } from 'next/font/google';
+import { StoreProvider } from '../shared/store/StoreProvider';
 import './globals.css';
 
 const geistSans = Geist({
@@ -93,7 +95,11 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(structuredData) }}
         />
       </head>
-      <body>{children}</body>
+      <body>
+        <Suspense fallback={null}>
+          <StoreProvider>{children}</StoreProvider>
+        </Suspense>
+      </body>
     </html>
   );
 }
