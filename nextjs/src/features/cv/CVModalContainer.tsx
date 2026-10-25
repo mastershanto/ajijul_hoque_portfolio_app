@@ -1,14 +1,12 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { CVModal } from './CVModal';
 import { Profile, Experience, Project, Skill } from '../../core/domain/entities';
+import { useAppDispatch, useAppSelector } from '../../shared/store/hooks';
+import { closeCVModal, openCVModal } from './cvSlice';
 
-export const openCVModal = () => {
-  if (typeof window !== 'undefined') {
-    window.dispatchEvent(new CustomEvent('open-cv-modal'));
-  }
-};
+export { openCVModal, closeCVModal };
 
 interface CVModalContainerProps {
   profile: Profile;
@@ -23,18 +21,13 @@ export const CVModalContainer: React.FC<CVModalContainerProps> = ({
   projects,
   skills,
 }) => {
-  const [isOpen, setIsOpen] = useState(false);
-
-  useEffect(() => {
-    const handleOpen = () => setIsOpen(true);
-    window.addEventListener('open-cv-modal', handleOpen);
-    return () => window.removeEventListener('open-cv-modal', handleOpen);
-  }, []);
+  const dispatch = useAppDispatch();
+  const isOpen = useAppSelector((state) => state.cv.isOpen);
 
   return (
     <CVModal
       isOpen={isOpen}
-      onClose={() => setIsOpen(false)}
+      onClose={() => dispatch(closeCVModal())}
       profile={profile}
       experiences={experiences}
       projects={projects}

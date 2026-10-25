@@ -5,13 +5,15 @@ import { ArrowRight, Sparkles, ShieldCheck, Layers, Smartphone, FileText } from 
 import { Badge } from '../../shared/components/Badge';
 import { Button } from '../../shared/components/Button';
 import { Profile } from '../../core/domain/entities';
-import { openCVModal } from '../cv/CVModalContainer';
+import { useAppDispatch } from '../../shared/store/hooks';
+import { openCVModal } from '../cv/cvSlice';
 
 interface HeroSectionProps {
   profile: Profile;
 }
 
 export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
+  const dispatch = useAppDispatch();
   const [currentRoleIndex, setCurrentRoleIndex] = useState(0);
 
   useEffect(() => {
@@ -75,7 +77,7 @@ export const HeroSection: React.FC<HeroSectionProps> = ({ profile }) => {
               variant="secondary"
               size="lg"
               icon={<FileText size={18} />}
-              onClick={openCVModal}
+              onClick={() => dispatch(openCVModal())}
             >
               View CV / Resume
             </Button>
