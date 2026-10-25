@@ -1,13 +1,14 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Mail, MapPin, Send, Check, Copy, MessageSquare, CheckCircle2, FileText } from 'lucide-react';
+import { Mail, MapPin, Send, Check, Copy, CheckCircle2, FileText } from 'lucide-react';
 import { GithubIcon, LinkedinIcon, TwitterIcon } from '../../shared/components/BrandIcons';
 import { SectionHeader } from '../../shared/components/SectionHeader';
 import { GlassCard } from '../../shared/components/GlassCard';
 import { Button } from '../../shared/components/Button';
 import { Profile } from '../../core/domain/entities';
-import { openCVModal } from '../cv/CVModalContainer';
+import { useAppDispatch } from '../../shared/store/hooks';
+import { openCVModal } from '../cv/cvSlice';
 import { container } from '../../infrastructure/container';
 import styles from './ContactSection.module.css';
 
@@ -16,6 +17,7 @@ interface ContactSectionProps {
 }
 
 export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
+  const dispatch = useAppDispatch();
   const [formData, setFormData] = useState({
     name: '',
     email: '',
@@ -153,7 +155,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ profile }) => {
                   variant="primary"
                   size="md"
                   icon={<FileText size={16} />}
-                  onClick={openCVModal}
+                  onClick={() => dispatch(openCVModal())}
                   style={{ width: '100%', justifyContent: 'center' }}
                 >
                   View & Download Full CV
