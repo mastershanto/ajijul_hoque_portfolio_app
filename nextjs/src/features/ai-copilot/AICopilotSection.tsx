@@ -1,9 +1,8 @@
 'use client';
 
-import React, { useState, useRef, useEffect } from 'react';
-import { Bot, Send, Sparkles, Terminal, User, RefreshCw, CheckCircle2, BookOpen } from 'lucide-react';
+import React, { useState, useRef, useEffect, useCallback } from 'react';
+import { Bot, Send, Sparkles, Terminal, User, RefreshCw, BookOpen } from 'lucide-react';
 import { SectionHeader } from '../../shared/components/SectionHeader';
-import { GlassCard } from '../../shared/components/GlassCard';
 import { ChatMessage } from '../../core/domain/entities';
 import { container } from '../../infrastructure/container';
 import styles from './AICopilotSection.module.css';
@@ -37,58 +36,64 @@ export const AICopilotSection: React.FC = () => {
     scrollToBottom();
   }, [messages, isStreaming]);
 
-  const handleSend = async (textToSend?: string) => {
-    const prompt = (textToSend || inputPrompt).trim();
-    if (!prompt || isStreaming) return;
+  const handleSend = useCallback(
+    async (textToSend?: string) => {
+      const prompt = (textToSend || inputPrompt).trim();
+      if (!prompt || isStreaming) return;
 
-    setInputPrompt('');
+      setInputPrompt('');
 
-    const userMessage: ChatMessage = {
-      id: `user-${Date.now()}`,
-      sender: 'user',
-      text: prompt,
-      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-    };
+      const now = Date.now();
+      const timeStr = new Date(now).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' });
 
-    setMessages((prev) => [...prev, userMessage]);
-    setIsStreaming(true);
+      const userMessage: ChatMessage = {
+        id: `user-${now}`,
+        sender: 'user',
+        text: prompt,
+        timestamp: timeStr,
+      };
 
-    const agentGateway = container.getAgentGateway();
+      setMessages((prev) => [...prev, userMessage]);
+      setIsStreaming(true);
 
-    // Placeholder message for live streaming accumulation
-    const agentMsgId = `agent-${Date.now()}`;
-    const initialAgentMessage: ChatMessage = {
-      id: agentMsgId,
-      sender: 'agent',
-      text: '',
-      timestamp: new Date().toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
-    };
+      const agentGateway = container.getAgentGateway();
 
-    setMessages((prev) => [...prev, initialAgentMessage]);
+      // Placeholder message for live streaming accumulation
+      const agentMsgId = `agent-${now + 1}`;
+      const initialAgentMessage: ChatMessage = {
+        id: agentMsgId,
+        sender: 'agent',
+        text: '',
+        timestamp: timeStr,
+      };
 
-    if (agentGateway.streamMessage) {
-      let accumulatedText = '';
-      await agentGateway.streamMessage(prompt, messages, (chunk) => {
-        accumulatedText += chunk;
-        setMessages((prev) =>
-          prev.map((msg) =>
-            msg.id === agentMsgId ? { ...msg, text: accumulatedText } : msg
-          )
-        );
-      });
-    } else {
-      const res = await agentGateway.sendMessage(prompt, messages);
-      if (res.success) {
-        setMessages((prev) =>
-          prev.map((msg) =>
-            msg.id === agentMsgId ? res.data : msg
-          )
-        );
+      setMessages((prev) => [...prev, initialAgentMessage]);
+
+      if (agentGateway.streamMessage) {
+        let accumulatedText = '';
+        await agentGateway.streamMessage(prompt, messages, (chunk) => {
+          accumulatedText += chunk;
+          setMessages((prev) =>
+            prev.map((msg) =>
+              msg.id === agentMsgId ? { ...msg, text: accumulatedText } : msg
+            )
+          );
+        });
+      } else {
+        const res = await agentGateway.sendMessage(prompt, messages);
+        if (res.success) {
+          setMessages((prev) =>
+            prev.map((msg) =>
+              msg.id === agentMsgId ? res.data : msg
+            )
+          );
+        }
       }
-    }
 
-    setIsStreaming(false);
-  };
+      setIsStreaming(false);
+    },
+    [inputPrompt, isStreaming, messages]
+  );
 
   return (
     <section id="ai-copilot" className={`section-wrapper ${styles.copilotSection}`}>
